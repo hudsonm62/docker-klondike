@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  IMAGE_TAG: ${{ github.repository_owner }}/${{ github.repository }}
+  IMAGE_TAG: ${{ github.repository }}
 jobs:
   publish-ghcr:
     # disabled temporarily
