@@ -6,7 +6,7 @@ Unofficial Docker image for [chriseldredge/Klondike](https://github.com/chriseld
 
 ## Tags
 
-- `alpine-20`
+- `alpine-3.20`
 - `v1`
 
 ## Usage
