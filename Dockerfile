@@ -17,9 +17,9 @@ RUN apk add "wget>=1.24.4" --no-cache \
     && chmod +x /tmp/kd/bin/Klondike.SelfHost.exe
 
 FROM base AS run
-COPY --from=dl "/tmp/kd" "/app"
+COPY --from=dl --chown=static:static "/tmp/kd" "/app"
 COPY run.sh /run.sh
-RUN chown -R static:static /app && chmod a+x /run.sh
+RUN chmod a+x /run.sh
 
 EXPOSE 8080
 ENTRYPOINT ["./run.sh"]
