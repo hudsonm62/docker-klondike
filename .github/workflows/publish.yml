@@ -46,9 +46,11 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           tags: |
+            ${{ env.IMAGE_TAG }}:v1
             ${{ env.IMAGE_TAG }}:alpine-3.20
             ${{ env.IMAGE_TAG }}:${{ steps.sha.outputs.sha }}
             ${{ env.IMAGE_TAG }}:latest
+            ghcr.io/${{ env.IMAGE_TAG }}:v1
             ghcr.io/${{ env.IMAGE_TAG }}:alpine-3.20
             ghcr.io/${{ env.IMAGE_TAG }}:${{ steps.sha.outputs.sha }}
             ghcr.io/${{ env.IMAGE_TAG }}:latest
