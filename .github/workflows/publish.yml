@@ -12,9 +12,7 @@ concurrency:
 env:
   IMAGE_TAG: ${{ github.repository }}
 jobs:
-  publish-ghcr:
-    # disabled temporarily
-    if: false
+  publish-image:
     runs-on: ubuntu-latest
     steps:
       - name: ⚙️ Checkout Repository
@@ -31,7 +29,7 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Login to Docker Hub
+      - name: 🌐 Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ github.repository_owner }}
@@ -54,3 +52,12 @@ jobs:
             ghcr.io/${{ env.IMAGE_TAG }}:alpine-3.20
             ghcr.io/${{ env.IMAGE_TAG }}:${{ steps.sha.outputs.sha }}
             ghcr.io/${{ env.IMAGE_TAG }}:latest
+
+      - name: 🏗️ Update DockerHub Description
+        uses: peter-evans/dockerhub-description@v4
+        with:
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          short-description: ${{ github.event.repository.description }}
+          readme-filepath: ./README.md
